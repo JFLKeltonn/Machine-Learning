@@ -74,9 +74,58 @@ class ANN:
         for i in range(len(corrections)):
             self.gradients[i] = self.gradients[i] - self.lr * corrections[i]
     
+    # ACTIVATION FUNCTIONS    
+    ## Gaussian
     def sigmoid(self, x):
-        return 1/(1+math.e**(-x))
+        return 1/(1+np.exp(-x))
 
     def dSigmoid(self, x):
-        a = (1+math.e**(-x))**2
-        return ((math.e**(-x))/a)
+        a = (1+np.exp(-x))**2
+        return ((np.exp(-x))/a)
+    
+    ## Rectified Linear Unit
+    def reLu(x, threshold):
+        k = x
+        if x < threshold:
+            k = 0
+        return k
+    
+    def dReLu(x, threshold):
+        k = 1
+        if x < threshold:
+            k = 0
+        return k
+    
+    ## Leaky Rectified Linear Unit
+    def leakyReLu(x, threshold, reduction):
+        k = x
+        if x < threshold:
+            k = reduction * k
+        return k
+    
+    def dLeakyReLu(x, threshold, reduction):
+        k = 1
+        if x < threshold:
+            k = reduction * k
+        return k
+    
+    ## tanh
+    def tanh(x):
+        numer = 1 - np.exp(-2*x)
+        denom = 1 + np.exp(-2*x)
+        return numer/denom
+    
+    def dTanh(x):
+        return
+    
+    ## Swish
+    def swish(x):
+        return 2 * x * self.sigmoid(x)
+    
+    def dSwish(x):
+        return
+    
+    # Softmax
+    def softmax(x):
+        return np.exp(x)/np.exp(x).sum(axis = 0)
+        
