@@ -1,11 +1,11 @@
 # Machine-Learning
 ## To do
-###Word Processing
+### Word Processing
 1. Implement a Tokenizer
 2. Implement a Stemming Function (Martin Porter's Porter Stemming Algorithm)
 3. Implement Lemmatization Function
 
-###Word Embedding
+### Word Embedding
 1. Implement a Skip-gram
 2. Implement Continuous Bag of Words (CBOW)
 3. Learn to use GloVe (Global Vectors)
