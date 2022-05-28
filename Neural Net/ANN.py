@@ -125,7 +125,19 @@ class ANN:
     def dSwish(x):
         return
     
-    # Softmax
+    ## Softmax
     def softmax(x):
         return np.exp(x)/np.exp(x).sum(axis = 0)
         
+    # Error Functions
+    ## Sum of Squared Errors
+    def sumSqError(y, y_hat):
+        diff = y_hat - y
+        return np.sum(np.dot(diff, diff))
+    
+    def dSumSqError(y, y_hat):
+        return y_hat - y
+    
+    ## Negative Log Likelihood
+    def logLike(y, y_hat):
+        return
