@@ -10,26 +10,26 @@ def dSigmoid(x):
     return ((np.exp(-x))/a)
 
 ## Rectified Linear Unit
-def reLu(x, threshold):
+def reLu(x, threshold = 0):
     k = x
     if x < threshold:
         k = 0
     return k
 
-def dReLu(x, threshold):
+def dReLu(x, threshold = 0):
     k = 1
     if x < threshold:
         k = 0
     return k
 
 ## Leaky Rectified Linear Unit
-def leakyReLu(x, threshold, reduction):
+def leakyReLu(x, threshold = 0, reduction = 0.1):
     k = x
     if x < threshold:
         k = reduction * k
     return k
 
-def dLeakyReLu(x, threshold, reduction):
+def dLeakyReLu(x, threshold = 0, reduction = 0.1):
     k = 1
     if x < threshold:
         k = reduction * k
@@ -42,7 +42,8 @@ def tanh(x):
     return numer/denom
 
 def dTanh(x):
-    return
+    intermediate = (1 - (1/(1+np.exp(-2*x))))
+    return tanh(x) * intermediate
 
 ## Swish
 def swish(x):
@@ -74,3 +75,15 @@ def crossEntropy(y, y_hat):
 ## General Differential for Error terms
 def dError(y, y_hat):
     return y_hat - y
+
+def differentiate(x, activation):
+    if activation == "Sigmoid":
+        return dSigmoid(x)
+    elif activation == "ReLU":
+        return dReLu(x)
+    elif activation == "Leaky ReLU":
+        return dLeakyReLu(x)
+    elif activation == "Tanh":
+        return dTanh(x)
+    else:
+        return dSwish(x)
