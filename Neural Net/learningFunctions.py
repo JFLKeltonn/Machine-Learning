@@ -78,12 +78,24 @@ def dError(y, y_hat):
 
 def differentiate(x, activation):
     if activation == "Sigmoid":
-        return dSigmoid(x)
+        return np.vectorize(dSigmoid)(x)
     elif activation == "ReLU":
-        return dReLu(x)
+        return np.vectorize(dReLu)(x)
     elif activation == "Leaky ReLU":
-        return dLeakyReLu(x)
+        return np.vectorize(dLeakyReLu)(x)
     elif activation == "Tanh":
-        return dTanh(x)
+        return np.vectorize(dTanh)(x)
     else:
-        return dSwish(x)
+        return np.vectorize(dSwish)(x)
+
+def activate(x, activation):
+    if activation == "Sigmoid":
+        return np.vectorize(sigmoid)(x)
+    elif activation == "ReLU":
+        return np.vectorize(reLu)(x)
+    elif activation == "Leaky ReLU":
+        return np.vectorize(leakyReLu)(x)
+    elif activation == "Tanh":
+        return np.vectorize(tanh)(x)
+    else:
+        return np.vectorize(swish)(x)

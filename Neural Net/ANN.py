@@ -44,7 +44,7 @@ class ANN:
             nodes = self.values[grad]
             weights = self.gradients[grad]
             self.preAct[valIndex] = np.dot(nodes, weights)
-            result = lf.sigmoid(self.preAct[valIndex]) # Need to change later based on actiaviton function specified
+            result = lf.activate((self.preAct[valIndex]),self.activation)
             self.values[valIndex] = result
 
 
