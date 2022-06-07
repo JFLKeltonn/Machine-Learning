@@ -1,0 +1,102 @@
+1. Why is it important to introduce non-linearities in a neural network?
+
+Neural Networks work by stacking layers of neurons. Each neuron contains a value that is derived from the input or from other neurons from the previous layer.
+Each Neuron Layer is connected to the next layer by a series of gradients represented by edges. Every Neuron in the previous layer is connected to all other neurons via these gradients.
+The values stored in the neurons of the previous layer are multiplied by their respective gradients and then added together to produce a single numerical output that represents the value stored in a single neuron of the next layer.
+Without an activaiton function, this value would represent the linear combinations of values stored in the previous layer. A linear combination is also strictly linear in nature.
+Therefore, this neural network would not be very good at approximating non-linear functions, such as square(x) or cube(x), since it is only capable of graphing linear combinations.
+For complex machine learning problems dealing with highly non-linear data, such as NLP, a linear neural network will never function optimally.
+
+2. What are the differences between a multi-class classification problem and a multi-label classification problem?
+
+A multi-class classification problem is an attempt to classify a data point into only one of many categories. The classes are assumed to be mutually exclusive.
+For example, you could classify a fruit into apple, orange or lemon, but not all three or any of the two classes at any time.
+A multi-label classification problem is an attempt to identify multiple features in a data point. The labels are not necessarily mutually exclusive and can coexist.
+For example, for an image classification problem with two labels, cats and dogs, an image may contain only cats, only dogs, both cats and dogs or none of the above.
+
+3. Why does the use of Dropout work as a regularizer? 
+
+Dropouts work as a regularizer as it reduces the non-linear complexity of the model during training. 
+
+4. Why you shouldn't use a softmax output activation function in a multi-label classification problem?
+
+5. Does the use of Dropout in your model slow down or speed up the training process? 
+
+Dropout speeds up the training process as it reduces the number of matrix operations between layers, since less gradients need to be 
+updated for each iteration of backpropagation.
+
+6. Is gradient descent guaranteed to find the global minima? Why so?
+
+No. If the learning rate is too low, the initialisation of gradients not optimal, or the gradient descent function not optimal, the model
+will rest on a local minima that is not the global minima.
+
+7. Explain the difference between Batch Gradient Descent, Stochastic Gradient Descent, and Mini-batch Gradient Descent. 
+
+Batch gradient descent performs backpropagation after iterating through all the data points in the training dataset. It takes the mean
+error of all data points in the dataset during backpropagation.
+
+Stochastic gradient descent performs backpropagation for each data point in the dataset. 
+It reaches the local minimum in fewer steps than batch gradient descent, but it may take longer in terms of time use for complex networks due to matrix operations.
+
+Mini-batch gradient descent performs backpropagation for each subset of size n, where n is lower than the size of the dataset.
+It reaches local minimum in fewer steps than Batch gradient, but more than Stochastic.
+It performs less matrix operations than Stochastic, but more than batch.
+In a sense, it contains the best of both worlds, without the significant weaknesses of both.
+
+8. What are the advantages of Convolution Neural Networks (CNN) over a fully connected network for image classification?
+
+9. What are the advantages of Recurrent Neural Networks (RNN) over a fully connected network when working with text data? 
+
+10. How do you deal with the vanishing gradient problem?
+
+11. How do you deal with the exploding gradient problem?
+
+12. Are feature engineering and feature extraction still needed when applying Deep Learning?
+
+Yes, feature engineering and extraction is still important in optimising the hyperparameters in the model. 
+This includes determining appropriate activation functions, number of neurons per layer, number of layers etc.
+When solving a complex problem like image classification, it is also useful to segment the problem into smaller sub-problems.
+The image classification network may have a set of layers for identifying edges, another for colours, another for colour gradients etc.
+These layers are then stacked together to give a stronger overall model with higher levels of predictability. 
+
+13. How does Batch Normalization help?
+
+Batch normalisation reduces the variance of the sample and prevents outliers from significantly distorting the model parameters during backpropagation.
+Without normalisation, outliers may overpower other normal data inputs, causing the model to over-predict ordinary data points.
+For example, for a linear regression model, having a few significant outliers may cause the model to return the average of all data points instead of correctly predicting the linear function.
+
+14. The universal approximation theorem shows that any function can be approximated as closely as needed using a single nonlinearity. Then why do we use more?
+
+Increasing the number of neurons allows the network to approximate more complex functions and reduces inaccuracies in predicting said functions.
+
+15. What are some of the limitations of Deep Learning?
+
+Deep learning takes a significantly long time to train due to multiple matrix multiplications.
+Additionally, if the data is not sufficiently well distributed, or too small, the network may not be able to perform predictions accurately.
+Also, Neural Network models may not be good at predicting data that exists outside of the training distribution. This is good for identifying outliers, but not so much for predicting future data.
+
+16. Why is initializing the weights of a network important? 
+
+The initialisation of weights is important as it would determine if you land on an optimal local minimum that is close to the global minimum, or a crappy one that is not useful at all.
+
+17. The training loss of your model is too high. What does it mean? What can you do?
+
+It means that the model is underfitting. This can be due to being stuck on a bad local minimum, having poor training data etc.
+We can improve the situation by using larger datasets, reducing variance of the data through removing outliers,
+increase the complexity of the model by adding more layers and neurons, increase the learning rate to make the model
+descend faster towards the local minimum, reinitialise the model parameters/gradients,
+or by changing the gradient descent function/method to try and find a better local minimum (such as using momentum gradient descent).
+
+18. Assuming you are using Batch Gradient Descent, what advantage would you get from shuffling your training dataset? 
+
+Shuffling the dataset 
+
+19. Compare the following evaluation protocols: a hold-out validation set, K-fold cross-validation, and iterated K-fold validation. When would you use each one?
+
+We would prefer to use a hold-out validation set as it would more accurately reflect real world conditions, where new data would be
+passed into an existing model to try and predict outcomes. However, this would require us to have a large data set that is representative
+of the population parameters.
+
+When we do not have a sufficiently large data set, we use the various forms of K-Fold cross validation.
+
+20. What are the main differences between Adam and the Gradient Descent optimization algorithms? 
